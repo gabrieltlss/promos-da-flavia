@@ -1,5 +1,3 @@
-const dotenv = require("dotenv");
-dotenv.config();
 const express = require("express");
 const roteador = require("./src/routes");
 const path = require("path");

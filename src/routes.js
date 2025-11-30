@@ -1,5 +1,3 @@
-const dotenv = require("dotenv");
-dotenv.config();
 const { Router } = require("express");
 
 const roteador = Router();
