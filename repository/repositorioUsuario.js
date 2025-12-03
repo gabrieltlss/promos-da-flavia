@@ -1,4 +1,6 @@
-const { client, pool } = require("../database/bancoDeDados");
+const { clientFunc, poolFunc } = require("../database/bancoDeDados");
+
+const pool = poolFunc();
 
 // Funções para usuário administrados
 async function obterUsuario(email) {
@@ -6,6 +8,7 @@ async function obterUsuario(email) {
         "SELECT * FROM usuario WHERE email = ?;",
         [email]
     );
+    console.log(usuario);
     return usuario[0];
 }
 

@@ -2,7 +2,7 @@ const mysql = require("mysql2/promise");
 const dotenv = require("dotenv");
 dotenv.config();
 
-async function client() {
+async function clientFunc() {
     const cliente = await mysql.createConnection({
         host: process.env.HOST,
         user: process.env.USUARIO_BD,
@@ -12,7 +12,7 @@ async function client() {
     return cliente;
 }
 
-function pool() {
+function poolFunc() {
     const pool = mysql.createPool({
         host: process.env.HOST,
         user: process.env.USUARIO_BD,
@@ -22,4 +22,4 @@ function pool() {
     return pool;
 }
 
-module.exports = { client, pool };
+module.exports = { clientFunc, poolFunc };
