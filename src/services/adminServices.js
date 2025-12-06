@@ -1,4 +1,4 @@
-const User = require("../model/User");
+const { User } = require("../model/User");
 const { getAdmin } = require("../repository/adminRepository");
 
 /**
@@ -32,8 +32,8 @@ async function getUser(email) {
 async function loginUser(userEmail, userPassword) {
     validateCredentials(userEmail, userPassword);
     const user = await getUser(userEmail);
-    const { id, email, password, createdAt } = user;
-    return new User(id, email, password, createdAt);
+    const { id, email, password } = user;
+    return new User(id, email, password);
 }
 
 module.exports = { loginUser };

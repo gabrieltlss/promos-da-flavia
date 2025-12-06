@@ -13,8 +13,8 @@ async function authAdmin(req, res) {
         const email = req.body.email;
         const password = req.body.password;
         const user = await loginUser(email, password);
-
-        res.json(user);
+        console.log(user);
+        res.json(user.getInfo());
     } catch (error) {
         res.render("login", { errorMessage: error.message });
     }
