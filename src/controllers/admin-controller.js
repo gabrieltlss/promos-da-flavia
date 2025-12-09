@@ -1,14 +1,6 @@
 const { getAdmin, createAdmin, validatePassword } = require("../services/adminServices");
 const { validateInputs } = require("../services/validationServices");
 
-function loginPage(req, res) {
-    try {
-        res.render("login");
-    } catch (error) {
-        res.status(500).json({ error: "Erro ao renderizar página." });
-    }
-}
-
 async function authAdmin(req, res) {
     const email = req.body.email;
     const password = req.body.password;
@@ -41,14 +33,6 @@ async function authAdmin(req, res) {
     res.redirect("/admin");
 }
 
-function adminPage(req, res) {
-    try {
-        res.render("admin");
-    } catch (error) {
-        res.status(500).json({ error: "Erro ao renderizar página." });
-    }
-}
-
 // Incompleta, será adaptada a página de admin, com res.render().
 async function create(req, res) {
     const email = req.body.email;
@@ -77,4 +61,4 @@ async function create(req, res) {
     }
 }
 
-module.exports = { loginPage, authAdmin, adminPage, create };
+module.exports = { authAdmin, create };
