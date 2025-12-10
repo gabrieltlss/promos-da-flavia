@@ -13,62 +13,53 @@
 </head>
 
 <body>
-    <header class="w3-grid w3-pink">
-        <img src="/img/header-logo.webp" alt="" id="header-logo">
-        <h2 class="w3-center w3-hide-small">Promos da Flávia</h2>
-        <button class="material-symbols-outlined w3-button w3-hide-medium w3-hide-large" id="menu-btn">menu</button>
-    </header>
-    <nav class="w3-sidebar w3-bar-block w3-card-2 w3-hide w3-animate-left w3-hide-medium w3-hide-large" id="sidebar">
-        <a href="/admin" class="w3-button w3-bar-item w3-hover-pink">Home</a>
-        <a href="/admin/create" class="w3-button w3-bar-item w3-hover-pink">Criar produto</a>
-        <a href="/admin/update" class="w3-button w3-bar-item w3-hover-pink">Atualizar Produto</a>
-        <a href="/admin/delete" class="w3-button w3-bar-item w3-hover-pink">Excluir Produto</a>
-    </nav>
+    <%- include("./partials/header.ejs") %>
+        <%- include("./partials/sidebar.ejs") %>
 
-    <main class="w3-grid">
-        <nav class="w3-bar-block w3-card w3-round-medium w3-hide-small">
-            <h3 class="w3-bar-item w3-center w3-pink" style="margin: 0;">Menu</h3>
-            <a href="/admin" class="w3-button w3-bar-item w3-hover-pink">Home</a>
-            <a href="/admin/create" class="w3-button w3-bar-item w3-hover-pink">Criar produto</a>
-            <a href="/admin/update" class="w3-button w3-bar-item w3-hover-pink">Atualizar Produto</a>
-            <a href="/admin/delete" class="w3-button w3-bar-item w3-hover-pink">Excluir Produto</a>
-        </nav>
+            <main class="w3-grid">
+                <nav class="w3-bar-block w3-card w3-round-medium w3-hide-small">
+                    <h3 class="w3-bar-item w3-center w3-pink" style="margin: 0;">Menu</h3>
+                    <a href="/admin" class="w3-button w3-bar-item w3-hover-pink">Home</a>
+                    <a href="/admin/create" class="w3-button w3-bar-item w3-hover-pink">Criar produto</a>
+                    <a href="/admin/update" class="w3-button w3-bar-item w3-hover-pink">Atualizar Produto</a>
+                    <a href="/admin/delete" class="w3-button w3-bar-item w3-hover-pink">Excluir Produto</a>
+                </nav>
 
-        <section class="w3-grid" id="dashboard">
-            <div class="w3-container w3-card w3-center w3-round-medium w3-border-pink w3-topbar card">
-                <h2>Total de produtos</h2>
-                <% if (typeof totalProducts==="undefined" ) {%>
-                    <h1>0</h1>
-                    <%} else {%>
-                        <h1>
-                            <%= totalProducts %>
-                        </h1>
-                        <%}%>
-            </div>
-            <div class="w3-container w3-card w3-center w3-round-medium w3-border-pink w3-topbar card">
-                <h2>Categorias</h2>
-                <% if (typeof categories==="undefined" ) {%>
-                    <h1>0</h1>
-                    <%} else {%>
-                        <h1>
-                            <%= categories %>
-                        </h1>
-                        <%}%>
-            </div>
-            <div class="w3-container w3-card w3-center w3-round-medium w3-border-pink w3-topbar card">
-                <h2>Itens recentes</h2>
-                <% if (typeof recentProducts==="undefined" ) {%>
-                    <h1>0</h1>
-                    <%} else {%>
-                        <h1>
-                            <%= recentProducts %>
-                        </h1>
-                        <%}%>
-            </div>
-        </section>
-    </main>
+                <section class="w3-grid" id="dashboard">
+                    <div class="w3-container w3-card w3-center w3-round-medium w3-border-pink w3-topbar card">
+                        <h2>Total de produtos</h2>
+                        <% if (typeof totalProducts==="undefined" ) {%>
+                            <h1>0</h1>
+                            <%} else {%>
+                                <h1>
+                                    <%= totalProducts %>
+                                </h1>
+                                <%}%>
+                    </div>
+                    <div class="w3-container w3-card w3-center w3-round-medium w3-border-pink w3-topbar card">
+                        <h2>Categorias</h2>
+                        <% if (typeof categories==="undefined" ) {%>
+                            <h1>0</h1>
+                            <%} else {%>
+                                <h1>
+                                    <%= categories %>
+                                </h1>
+                                <%}%>
+                    </div>
+                    <div class="w3-container w3-card w3-center w3-round-medium w3-border-pink w3-topbar card">
+                        <h2>Itens recentes</h2>
+                        <% if (typeof recentProducts==="undefined" ) {%>
+                            <h1>0</h1>
+                            <%} else {%>
+                                <h1>
+                                    <%= recentProducts %>
+                                </h1>
+                                <%}%>
+                    </div>
+                </section>
+            </main>
 
-    <script src="/js/admin.js"></script>
+            <script src="/js/header.js"></script>
 </body>
 
 </html>
