@@ -34,7 +34,7 @@ async function authAdmin(req, res) {
 }
 
 // Incompleta, será adaptada a página de admin, com res.render().
-async function create(req, res) {
+async function createNewAdmin(req, res) {
     const email = req.body.email;
     const password = req.body.password;
 
@@ -61,4 +61,12 @@ async function create(req, res) {
     }
 }
 
-module.exports = { authAdmin, create };
+async function createProduct(req, res) {
+    const body = req.body;
+    console.log(req.file.buffer)
+    console.log(body);
+
+    res.json(body)
+}
+
+module.exports = { authAdmin, createNewAdmin, createProduct };
