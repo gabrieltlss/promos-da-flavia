@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const { authAdmin, createNewAdmin, createProduct } = require("./controllers/admin-controller");
+const { authAdmin, createNewAdmin, createNewProduct } = require("./controllers/admin-controller");
 const { loginAuthMiddleware, adminAuthMiddleware } = require("./middlewares/authMiddleware");
 const { loginPage, adminPage, createProductPage } = require("./controllers/admin-render-controller");
 const path = require("path");
@@ -24,6 +24,6 @@ router.get("/login", loginAuthMiddleware, loginPage);
 router.post("/authAdmin", authAdmin);
 router.get("/admin", adminAuthMiddleware, adminPage);
 router.get("/admin/create", createProductPage);
-router.post("/admin/create/new", uploadImg.single("image-input"), createProduct);
+router.post("/admin/create/new", uploadImg.single("image-input"), createNewProduct);
 
 module.exports = router;

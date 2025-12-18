@@ -1,3 +1,6 @@
+const uuid = require("uuid");
+const uuidV4 = uuid.v4;
+
 // Validações de entrada
 function validateEmail(email) {
     if (
@@ -19,10 +22,30 @@ function validatePassword(password) {
 function validateInputs(email, password) {
     const emailRes = validateEmail(email);
     const passwordRes = validatePassword(password);
-
     if (!emailRes) return { valid: false, error: "E-mail inválido." };
     if (!passwordRes) return { valid: false, error: "Senha inválida." };
     return { valid: true };
 }
 
-module.exports = { validateInputs };
+// Validações e funções de produtos
+function validateName(name) {
+    if (name.length === 0 || typeof name !== "string" || name.match(/[<>!@#$%¨&*°º]/g)) { return false }
+    return true;
+}
+
+function validatePrice(price) {
+    if (typeof price !== "number") { return false }
+    return true;
+}
+
+function validateProductFields(name, price) {
+    const nameRes = validateName(name);
+    const priceRes = validatePrice(price);
+    if (!nameRes) return { valid: false, error: "Campo de nome inválido." };
+    if (!priceRes) return { valid: false, error: "Campo de preço inválido." };
+    return { valid: true };
+}
+
+function generateProductId() { return uuidV4() }
+
+module.exports = { validateInputs, validateProductFields, generateProductId };

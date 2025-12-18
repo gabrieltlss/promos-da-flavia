@@ -1,5 +1,6 @@
 const { getAdmin, createAdmin, validatePassword } = require("../services/adminServices");
-const { validateInputs } = require("../services/validationServices");
+const { createProduct } = require("../services/productsServices");
+const { validateInputs, validateProductFields } = require("../services/validationServices");
 const path = require("node:path");
 
 async function authAdmin(req, res) {
@@ -20,6 +21,7 @@ async function authAdmin(req, res) {
             return;
         }
     } catch (error) {
+        // Devo mudar no futuro - Não mostrar mensagem de erro do BD.
         res.render("login", { errorMessage: error.message });
     }
 
@@ -62,22 +64,34 @@ async function createNewAdmin(req, res) {
     }
 }
 
-async function createProduct(req, res) {
+async function createNewProduct(req, res) {
     const productName = req.body.name;
     const productPrice = Number(req.body.price);
     const productUrl = req.body.url;
     const imgPath = path.join(__dirname, "../../public", "img", req.body.filepath);
 
-    // Criar tabela no banco de dados
-    // Criar funcções do service e do repository
+    console.log(productName, productPrice, productUrl, imgPath);
 
+    const fields = validateProductFields(productName, productPrice);
+    if (fields.valid === false) {
+        res.render("create", { errorMessage: fields.error });
+        return;
+    }
 
-    res.json({
-        productName,
-        productPrice,
-        productUrl,
-        imgPath
-    });
+    try {
+        const newProduct = await createProduct(productName, productPrice, productUrl, imgPath);
+        console.log(newProduct);
+        if (newProduct.valid === false) {
+            res.render("create", { errorMessage: newProduct.error });
+            return;
+        }
+    } catch (error) {
+        // Devo mudar no futuro - Não mostrar mensagem de erro do BD.
+        console.log(error.message)
+        res.render("create", { errorMessage: error.message });
+    }
+
+    res.json("Produto criado");
 }
 
-module.exports = { authAdmin, createNewAdmin, createProduct };
+module.exports = { authAdmin, createNewAdmin, createNewProduct };
