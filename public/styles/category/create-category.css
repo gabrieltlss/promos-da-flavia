@@ -1,0 +1,28 @@
+main {
+    min-height: 100vh;
+}
+
+.list-category-container {
+    margin-top: 80px;
+}
+
+@media screen and (min-width: 601px) {
+    main {
+        grid-template-columns: 200px auto;
+        gap: 24px;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .create-category-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 32px;
+    }
+
+    #create-category-form,
+    #delete-category-form {
+        width: 100%;
+    }
+}
