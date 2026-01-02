@@ -56,7 +56,7 @@
                                         <div class="w3-section">
                                             <label for="category">Categoria:</label>
                                             <select name="category" id="category" required>
-                                                <option value="" disabled selected>Selecionar categoria</option>
+                                                <option value="" disabled selected>Selecionar</option>
                                                 <% for(let i=0; i < categories.length; i++) {%>
                                                     <option value="<%=categories[i].id%>">
                                                         <%=categories[i].name%>
@@ -85,7 +85,7 @@
                     </section>
             </main>
             <script src="/js/header.js"></script>
-            <script src="/js/product/createProduct.js"></script>
+            <script src="/js/product/loadImg.js"></script>
 </body>
 
 </html>

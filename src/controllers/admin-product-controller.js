@@ -1,5 +1,4 @@
-const path = require("node:path");
-const { createProduct } = require("../services/productServices");
+const { createProduct, getAllProducts } = require("../services/productServices");
 const { getAllCategories } = require("../services/categoryServices")
 const { validateProductFields } = require("../services/validationServices");
 
@@ -9,21 +8,65 @@ async function createProductPage(req, res) {
         const getCategories = await getAllCategories();
         if (getCategories.valid === false) {
             res.render("create-product", { message: "Crie categorias antes de criar um produto" });
+            return;
         }
         res.render("create-product", { categoriesExists: getCategories.valid, categories: getCategories.res });
     } catch (error) {
         res.status(500).json({ error: "Erro ao renderizar página." });
     }
 }
+// Falta-me terminar o tratamento de erro da página acima.
 
+async function updateProductsPage(req, res) {
+    let getProducts = null;
+    let getCategories = null;
+
+    try {
+        getProducts = await getAllProducts();
+        if (getProducts.valid === false) {
+            res.render("update-product", { message: "Crie produtos para poder atualizá-los." });
+            return;
+        }
+
+        getCategories = await getAllCategories();
+        if (getCategories.valid === false) {
+            res.render("update-product", { productsExists: getProducts.valid, products: getProducts.res });
+            return;
+        }
+
+        const productAndCategories = getProducts.res.map((prod) => {
+            let categoryName = null;
+            for (let i = 0; i < getCategories.res.length; i++) {
+                if (getCategories.res[i].id === prod["category_id"]) {
+                    categoryName = getCategories.res[i].name;
+                    break;
+                }
+            }
+            return { ...prod, categoryName };
+        });
+
+        console.log(productAndCategories);
+
+        res.render("update-product", {
+            productsExists: getProducts.valid,
+            products: productAndCategories,
+            categoriesExists: getCategories.valid,
+            categories: getCategories.res
+        });
+    } catch (error) {
+        console.log(error.message);
+        res.status(500).json({ error: "Erro ao renderizar página." });
+    }
+}
+
+
+// === Lógica ===
 async function createNewProduct(req, res) {
     const productName = req.body.name;
     const productPrice = Number(req.body.price);
     const productUrl = req.body.url;
-    const imgPath = path.join(__dirname, "../../public", "img", req.body.filepath);
+    const imgPath = req.body.filepath;
     const productCategory = Number(req.body.category);
-
-    // console.log(productName, productPrice, productUrl, productCategory, imgPath);
 
     const fields = validateProductFields(productName, productPrice);
     if (fields.valid === false) {
@@ -47,4 +90,4 @@ async function createNewProduct(req, res) {
 
 }
 
-module.exports = { createProductPage, createNewProduct };
+module.exports = { createProductPage, createNewProduct, updateProductsPage };
