@@ -16,7 +16,6 @@ async function createProductPage(req, res) {
         res.render("create-product", { loadingError: "Erro ao renderizar página e seus dados." });
     }
 }
-// Falta-me terminar o tratamento de erro da página acima.
 
 async function updateProductPage(req, res) {
     let getProducts = null;

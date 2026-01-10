@@ -21,61 +21,65 @@
                 <%- include("./partials/aside.ejs") %>
 
                     <section class="creation-section">
-                        <div class="main-category-container">
-                            <h3>Criar Categoria</h3>
-                            <form action="/admin/category/create/new" method="post" id="create-category-form">
+                        <%if(typeof loadingError !=="undefined" ) {%>
+                            <h2 class="w3-center">
+                                <%= loadingError %>
+                            </h2>
+                            <%} else {%>
 
-                                <div class="w3-section">
-                                    <label for="category-name">Categoria:</label>
-                                    <input type="text" name="category-name" id="category-name" class="w3-input"
-                                        required>
+                                <div class="main-category-container">
+                                    <h3>Criar Categoria</h3>
+
+                                    <form action="/admin/category/create/new" method="post" id="create-category-form">
+
+                                        <div class="w3-section">
+                                            <label for="category-name">Categoria:</label>
+                                            <input type="text" name="category-name" id="category-name" class="w3-input"
+                                                required>
+                                        </div>
+
+                                        <div class="w3-section">
+                                            <button type="submit" class="w3-button w3-pink">Criar</button>
+                                            <%if (typeof errorMessage!=="undefined" ){%>
+                                                <span class="w3-margin-left w3-small w3-text-red">
+                                                    <%= errorMessage%>
+                                                </span>
+                                                <%}%>
+                                        </div>
+                                    </form>
                                 </div>
 
-                                <div class="w3-section">
-                                    <button type="submit" class="w3-button w3-pink">Criar</button>
-                                    <%if(typeof creationError !=="undefined" ){%>
-                                        <span class="w3-margin-left w3-small w3-text-red">
-                                            <%= creationError%>
-                                        </span>
-                                        <%}else if (typeof errorMessage!=="undefined" ){%>
-                                            <span class="w3-margin-left w3-small w3-text-red">
-                                                <%= errorMessage%>
-                                            </span>
+                                <div class="list-category-container">
+                                    <%if (typeof categoryExist==="undefined" ) {%>
+                                        <h3>
+                                            <%=message%>
+                                        </h3>
+
+                                        <%} else {%>
+                                            <table class="w3-table w3-bordered w3-border">
+                                                <thead>
+                                                    <tr class="w3-pink">
+                                                        <td>ID</td>
+                                                        <td>Nome da categoria</td>
+                                                    </tr>
+                                                </thead>
+
+                                                <tbody>
+                                                    <%for(let i=0; i < categories.length; i++) {%>
+                                                        <tr>
+                                                            <td>
+                                                                <%= categories[i].id%>
+                                                            </td>
+                                                            <td>
+                                                                <%= categories[i].name%>
+                                                            </td>
+                                                        </tr>
+                                                        <%}%>
+                                                </tbody>
+                                            </table>
                                             <%}%>
                                 </div>
-                            </form>
-                        </div>
-
-                        <div class="list-category-container">
-                            <%if (typeof categoryExist==="undefined" ) {%>
-                                <h3>
-                                    <%=message%>
-                                </h3>
-
-                                <%} else {%>
-                                    <table class="w3-table w3-bordered w3-border">
-                                        <thead>
-                                            <tr class="w3-pink">
-                                                <td>ID</td>
-                                                <td>Nome da categoria</td>
-                                            </tr>
-                                        </thead>
-
-                                        <tbody>
-                                            <%for(let i=0; i < categories.length; i++) {%>
-                                                <tr>
-                                                    <td>
-                                                        <%= categories[i].id%>
-                                                    </td>
-                                                    <td>
-                                                        <%= categories[i].name%>
-                                                    </td>
-                                                </tr>
-                                                <%}%>
-                                        </tbody>
-                                    </table>
-                                    <%}%>
-                        </div>
+                                <%}%>
 
                     </section>
             </main>

@@ -12,7 +12,7 @@ async function createCategoryPage(req, res) {
         res.render("create-category", { categoryExist: getCategories.valid, categories: getCategories.res });
     } catch (error) {
         console.log(`Erro: ${error.message}`);
-        res.render("create-category", { errorMessage: "Erro interno.", categoryExist: getCategories.valid, categories: getCategories.res });
+        res.render("create-category", { loadingError: "Erro ao renderizar páginas e dados." });
     }
 }
 
@@ -27,8 +27,7 @@ async function deleteCategoryPage(req, res) {
         res.render("delete-category", { categoryExist: getCategories.valid, categories: getCategories.res });
     } catch (error) {
         console.log(`Erro: ${error.message}`);
-        res.render("delete-category", { errorMessage: "Erro interno.", categoryExist: getCategories.valid, categories: getCategories.res });
-
+        res.render("delete-category", { loadingError: "Erro ao renderizar páginas e dados." });
     }
 }
 
@@ -43,7 +42,7 @@ async function updateCategoryPage(req, res) {
         res.render("update-category", { categoryExist: getCategories.valid, categories: getCategories.res });
     } catch (error) {
         console.log(`Erro: ${error.message}`);
-        res.render("update-category", { errorMessage: "Erro interno.", categoryExist: getCategories.valid, categories: getCategories.res });
+        res.render("update-category", { loadingError: "Erro ao renderizar páginas e dados." });
     }
 }
 
@@ -58,7 +57,7 @@ async function createNewCategory(req, res) {
             const createdCategory = await createCategory(categoryName);
             if (createdCategory.valid === false) {
                 res.render("create-category", {
-                    creationError: createdCategory.error,
+                    errorMessage: createdCategory.error,
                     message: getCategories.error
                 });
                 return;
@@ -72,7 +71,7 @@ async function createNewCategory(req, res) {
             res.render("create-category", {
                 categoryExist: getCategories.valid,
                 categories: getCategories.res,
-                creationError: "Esta categoria já existe."
+                errorMessage: "Esta categoria já existe."
             });
             return;
         }
@@ -82,14 +81,14 @@ async function createNewCategory(req, res) {
             res.render("create-category", {
                 categoryExist: getCategories.valid,
                 categories: getCategories.res,
-                creationError: createdCategory.error
+                errorMessage: createdCategory.error
             });
             return;
         }
         res.redirect("/admin/category/create");
     } catch (error) {
         console.log(`Erro: ${error.message}`);
-        res.render("create-category", { errorMessage: "Erro interno.", categoryExist: getCategories.valid, categories: getCategories.res });
+        res.render("create-category", { loadingError: "Erro ao renderizar páginas e dados." });
     }
 }
 
@@ -121,13 +120,14 @@ async function deleteInformedCategory(req, res) {
         res.redirect("/admin/category/delete");
     } catch (error) {
         console.log(`Erro: ${error.message}`);
-        res.render("delete-category", { errorMessage: "Erro interno.", categoryExist: getCategories.valid, categories: getCategories.res });
+        res.render("delete-category", { loadingError: "Erro ao renderizar páginas e dados." });
     }
 }
 
 async function updateInformedCategory(req, res) {
     const categoryId = Number(req.body["category-id"]);
     const categoryName = req.body["category-name"];
+    
     let getCategories = null;
     try {
         // Não preciso checar se categorias existem.
@@ -165,7 +165,7 @@ async function updateInformedCategory(req, res) {
         res.redirect("/admin/category/update");
     } catch (error) {
         console.log(`Erro: ${error.message}`);
-        res.render("update-category", { errorMessage: "Erro interno.", categoryExist: getCategories.valid, categories: getCategories.res });
+       res.render("update-category", { loadingError: "Erro ao renderizar páginas e dados." });
     }
 }
 
