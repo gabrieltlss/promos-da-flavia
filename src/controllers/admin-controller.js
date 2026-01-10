@@ -20,7 +20,8 @@ async function authAdmin(req, res) {
         }
     } catch (error) {
         // Devo mudar no futuro - Não mostrar mensagem de erro do BD.
-        res.render("login", { errorMessage: error.message });
+        console.log(error.message);
+        res.render("login", "Erro interno.");
     }
 
     const validPassword = validatePassword(password, user.res.password);
