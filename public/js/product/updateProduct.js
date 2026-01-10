@@ -7,10 +7,12 @@ function updateProduct({ id, name, price, link, img, categoryId }) {
     const nameInput = document.getElementById("product-name");
     const priceInput = document.getElementById("product-price");
     const urlInput = document.getElementById("product-url");
-    const categoryOption = document.querySelector(`option[value="${categoryId ? categoryId : null}"]`);
+    const categoryOption = document.querySelector(
+        `option[value="${categoryId ? categoryId : null}"]`,
+    );
 
     const productImgTag = document.getElementById("product-image");
-    productImgTag.src = `/img/${img}`;
+    productImgTag.src = `/img/products/${img}`;
 
     idInput.value = id;
     nameInput.value = name;

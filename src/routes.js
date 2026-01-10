@@ -29,21 +29,9 @@ const {
     updateInformedCategory,
 } = require("./controllers/admin-category-controller");
 
-const path = require("path");
-const multer = require("multer");
-
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, path.join(__dirname, "../", "../", "public_html", "img"));
-    },
-    filename: function (req, file, cb) {
-        req.body.filepath = file.originalname;
-        cb(null, file.originalname);
-    },
-});
-const uploadImg = multer({ storage: storage });
-
 const router = Router();
+
+const { uploadImg } = require("./middlewares/multerMiddleware");
 
 // Rotas do administrador
 router.get("/login", loginAuthMiddleware, loginPage);

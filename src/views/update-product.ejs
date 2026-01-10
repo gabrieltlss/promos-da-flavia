@@ -1,161 +1,201 @@
 <!DOCTYPE html>
 <html lang="pt">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Promos da Flávia</title>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Promos da Flávia</title>
+        <link rel="stylesheet" href="/styles/partials/header.css">
+        <link rel="stylesheet" href="/styles/product/update-product.css">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css">
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&icon_names=menu&display=block
+"
+        >
+    </head>
 
-    <link rel="stylesheet" href="/styles/partials/header.css">
-    <link rel="stylesheet" href="/styles/product/update-product.css">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&icon_names=menu&display=block
-">
-</head>
+    <body>
+        <%- include("./partials/sidebar.ejs") %> <%-
+        include("./partials/header.ejs") %>
 
-<body>
-    <%- include("./partials/sidebar.ejs") %>
-        <%- include("./partials/header.ejs") %>
+        <main class="w3-grid w3-padding">
+            <%- include("./partials/aside.ejs") %>
 
-            <main class="w3-grid w3-padding">
-                <%- include("./partials/aside.ejs") %>
+            <section id="update-section">
+                <h2 class="w3-center">Atualizar produto</h2>
 
-                    <section id="update-section">
-                        <h2 class="w3-center">Atualizar produto</h2>
+                <%if(typeof loadingError !=="undefined" ) {%>
+                <h2 class="w3-center">
+                    <%= loadingError %>
+                </h2>
+                <%} else{%> <% if(typeof productsExists==="undefined" ) {%>
+                <h3 class="w3-center">
+                    <%= message%>
+                </h3>
 
-                        <%if(typeof loadingError !=="undefined" ) {%>
-                            <h2 class="w3-center">
-                                <%= loadingError %>
-                            </h2>
-                            <%} else{%>
+                <%} else {%>
+                <div class="update-product-container">
+                    <div class="w3-border" id="image-container">
+                        <img src="" alt="Capa do produto" id="product-image">
+                    </div>
 
-                                <% if(typeof productsExists==="undefined" ) {%>
-                                    <h3 class="w3-center">
-                                        <%= message%>
-                                    </h3>
+                    <form
+                        action="/admin/product/update/post"
+                        method="post"
+                        enctype="multipart/form-data"
+                        id="update-form"
+                    >
+                        <div class="w3-section">
+                            <label for="product-id">ID:</label>
+                            <input
+                                type="number"
+                                name="product-id"
+                                id="product-id"
+                                class="w3-input"
+                                min="0"
+                                max="10000"
+                                required
+                            >
+                        </div>
 
-                                    <%} else {%>
-                                        <div class="update-product-container">
-                                            <div class="w3-border" id="image-container">
-                                                <img src="" alt="Capa do produto" id="product-image">
-                                            </div>
+                        <div class="w3-section">
+                            <label for="product-name">Nome do produto:</label>
+                            <input
+                                type="text"
+                                name="product-name"
+                                id="product-name"
+                                class="w3-input"
+                                required
+                            >
+                        </div>
 
-                                            <form action="/admin/product/update/post" method="post"
-                                                enctype="multipart/form-data" id="update-form">
+                        <div class="w3-section">
+                            <label for="product-price">Preço:</label>
+                            <input
+                                type="number"
+                                name="product-price"
+                                id="product-price"
+                                class="w3-input"
+                                min="0"
+                                max="100000"
+                                required
+                            >
+                        </div>
 
-                                                <div class="w3-section">
-                                                    <label for="product-id">ID:</label>
-                                                    <input type="number" name="product-id" id="product-id"
-                                                        class="w3-input" min="0" max="10000" required>
-                                                </div>
+                        <div class="w3-section">
+                            <label for="product-url">Link:</label>
+                            <input
+                                type="url"
+                                name="product-url"
+                                id="product-url"
+                                class="w3-input"
+                                required
+                            >
+                        </div>
 
-                                                <div class="w3-section">
-                                                    <label for="product-name">Nome do produto:</label>
-                                                    <input type="text" name="product-name" id="product-name"
-                                                        class="w3-input" required>
-                                                </div>
+                        <div class="w3-section">
+                            <label for="product-category">Categoria:</label>
+                            <select
+                                name="product-category"
+                                id="product-category"
+                                class="w3-input"
+                                required
+                            >
+                                <option value="null">Sem categoria</option>
 
-                                                <div class="w3-section">
-                                                    <label for="product-price">Preço:</label>
-                                                    <input type="number" name="product-price" id="product-price"
-                                                        class="w3-input" min="0" max="100000" required>
-                                                </div>
+                                <%if (typeof categoriesExists!=="undefined" )
+                                {%> <% for(let i=0; i < categories.length; i++)
+                                {%>
+                                <option value="<%=categories[i].id%>">
+                                    <%=categories[i].name%>
+                                </option>
+                                <%}%> <%}%>
+                            </select>
+                        </div>
 
-                                                <div class="w3-section">
-                                                    <label for="product-url">Link:</label>
-                                                    <input type="url" name="product-url" id="product-url"
-                                                        class="w3-input" required>
-                                                </div>
+                        <div class="w3-section">
+                            <label for="image-input">Imagem:</label><br>
+                            <input
+                                type="file"
+                                name="image-input"
+                                accept="image/*"
+                                id="image-input"
+                            >
+                        </div>
 
-                                                <div class="w3-section">
-                                                    <label for="product-category">Categoria:</label>
-                                                    <select name="product-category" id="product-category"
-                                                        class="w3-input" required>
-                                                        <option value="null">Sem categoria</option>
+                        <div class="w3-section">
+                            <button type="submit" class="w3-button w3-pink">
+                                Atualizar
+                            </button>
 
-                                                        <%if (typeof categoriesExists!=="undefined" ) {%>
-                                                            <% for(let i=0; i < categories.length; i++) {%>
-                                                                <option value="<%=categories[i].id%>">
-                                                                    <%=categories[i].name%>
-                                                                </option>
-                                                                <%}%>
-                                                                    <%}%>
-                                                    </select>
-                                                </div>
+                            <%if (typeof errorMessage!=="undefined" ) {%>
+                            <span class="w3-margin-left w3-text-red w3-small">
+                                <%= errorMessage%>
+                            </span>
+                            <%}%>
+                        </div>
+                    </form>
+                </div>
 
-                                                <div class="w3-section">
-                                                    <label for="image-input">Imagem:</label><br>
-                                                    <input type="file" name="image-input" accept="image/*"
-                                                        id="image-input">
-                                                </div>
+                <div class="products-container">
+                    <table class="w3-table w3-bordered w3-border w3-centered">
+                        <thead>
+                            <tr class="w3-pink">
+                                <td>ID</td>
+                                <td>Nome</td>
+                                <td>Preço</td>
+                                <td>Imagem</td>
+                                <td>Modificar</td>
+                            </tr>
+                        </thead>
 
-                                                <div class="w3-section">
-                                                    <button type="submit" class="w3-button w3-pink">Atualizar</button>
+                        <tbody>
+                            <%for (let i=0; i < products.length; i++) {%>
+                            <tr>
+                                <td>
+                                    <%= products[i].id%>
+                                </td>
+                                <td>
+                                    <%= products[i].name%>
+                                </td>
+                                <td>
+                                    <%= products[i].price%>
+                                </td>
 
-                                                    <%if (typeof errorMessage!=="undefined" ) {%>
-                                                        <span class="w3-margin-left w3-text-red w3-small">
-                                                            <%= errorMessage%>
-                                                        </span>
-                                                        <%}%>
-                                                </div>
-                                            </form>
-                                        </div>
-
-                                        <div class="products-container">
-                                            <table class="w3-table w3-bordered w3-border w3-centered">
-                                                <thead>
-                                                    <tr class="w3-pink">
-                                                        <td>ID</td>
-                                                        <td>Nome</td>
-                                                        <td>Preço</td>
-                                                        <td>Imagem</td>
-                                                        <td>Modificar</td>
-                                                    </tr>
-                                                </thead>
-
-                                                <tbody>
-                                                    <%for (let i=0; i < products.length; i++) {%>
-                                                        <tr>
-                                                            <td>
-                                                                <%= products[i].id%>
-                                                            </td>
-                                                            <td>
-                                                                <%= products[i].name%>
-                                                            </td>
-                                                            <td>
-                                                                <%= products[i].price%>
-                                                            </td>
-
-
-                                                            <td>
-                                                                <img src="/img/<%= products[i].img%>" alt=""
-                                                                    class="table-img">
-                                                            </td>
-                                                            <td>
-                                                                <a href="#update-section" class="w3-button w3-pink"
-                                                                    onclick="updateProduct({
+                                <td>
+                                    <img
+                                        src="/img/products/<%= products[i].img%>"
+                                        alt=""
+                                        class="table-img"
+                                    >
+                                </td>
+                                <td>
+                                    <a
+                                        href="#update-section"
+                                        class="w3-button w3-pink"
+                                        onclick="updateProduct({
                                                                         id: '<%= products[i].id%>',
                                                                         name: '<%= products[i].name%>',
                                                                         price: '<%= products[i].price%>',
                                                                         link: '<%= products[i].link%>',
                                                                         img: '<%= products[i].img%>',
                                                                         categoryId: '<%= products[i].category_id%>',
-                                                                    })">
-                                                                    Obter
-                                                                </a>
-                                                            </td>
-                                                        </tr>
-                                                        <%}%>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        <%}%>
-                                            <%}%>
-                    </section>
-            </main>
-            <script src="/js/header.js"></script>
-            <script src="/js/product/updateProduct.js"></script>
-            <script src="/js/product/loadImg.js"></script>
-</body>
-
+                                                                    })"
+                                    >
+                                        Obter
+                                    </a>
+                                </td>
+                            </tr>
+                            <%}%>
+                        </tbody>
+                    </table>
+                </div>
+                <%}%> <%}%>
+            </section>
+        </main>
+        <script src="/js/header.js"></script>
+        <script src="/js/product/updateProduct.js"></script>
+        <script src="/js/product/loadImg.js"></script>
+    </body>
 </html>
