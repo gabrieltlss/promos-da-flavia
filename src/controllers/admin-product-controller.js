@@ -115,9 +115,8 @@ async function updateProductController(req, res) {
 
         getCategories = await getAllCategories();
     } catch (error) {
-        // Melhorar isto.
         console.log(error.message);
-        res.status(500).json({ error: "Erro ao renderizar página." });
+        res.render("update-product", { loadingError: "Erro ao renderizar página e seus dados." });
     }
 
     const productExists = getProducts.res.find(prod => Number(prod.id) === productId);
@@ -155,7 +154,7 @@ async function updateProductController(req, res) {
     let updatedProduct = null;
     try {
         updatedProduct = await updateProduct(updateObj);
-
+        
     } catch (error) {
         if (getCategories.valid === false) {
             res.render("update-product", {
