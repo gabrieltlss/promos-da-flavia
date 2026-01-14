@@ -1,14 +1,11 @@
 const { Router } = require("express");
-const { authAdmin, createNewAdmin, adminLogout } = require(
-    "./controllers/admin-controller",
-);
+const { loginPage, adminPage, authAdmin, createNewAdmin, adminLogout } =
+    require(
+        "./controllers/admin-controller",
+    );
 
 const { loginAuthMiddleware, adminAuthMiddleware } = require(
     "./middlewares/authMiddleware",
-);
-
-const { loginPage, adminPage } = require(
-    "./controllers/admin-render-controller",
 );
 
 const {

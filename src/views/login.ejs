@@ -1,51 +1,78 @@
 <!DOCTYPE html>
 <html lang="pt">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Promos da Flávia</title>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Promos da Flávia</title>
+        <link rel="stylesheet" href="/styles/login.css">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css">
+        <link
+            rel="shortcut icon"
+            href="/img/promos-icon.png"
+            type="image/x-icon"
+        >
+    </head>
 
-    <link rel="stylesheet" href="/styles/login.css">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css">
-</head>
+    <body>
+        <header class="w3-grid w3-pink" id="header">
+            <img src="/img/header-logo.webp" alt="" id="header-logo">
+            <h2 class="w3-center">Promos da Flávia</h2>
+        </header>
 
-<body>
-    <header class="w3-grid w3-pink" id="header">
-        <img src="/img/header-logo.webp" alt="" id="header-logo">
-        <h2 class="w3-center">Promos da Flávia</h2>
-    </header>
+        <main class="w3-flex w3-padding">
+            <div class="main-left w3-hide-small w3-hide-medium">
+                <img
+                    src="/img/hero-image.webp"
+                    alt="Mulher segurando caixa"
+                    class="w3-round-xlarge"
+                    width="100%"
+                    height="100%"
+                >
+            </div>
 
-    <main class="w3-flex w3-padding">
-        <div class="main-left w3-hide-small w3-hide-medium">
-            <img src="/img/hero-image.webp" alt="Mulher segurando caixa" class="w3-round-xlarge" width="100%"
-                height="100%">
-        </div>
+            <div class="main-right">
+                <%if(typeof loadingError !== "undefined") {%>
+                <h2>
+                    <%= loadingError %>
+                </h2>
 
-        <div class="main-right">
-            <form action="/authAdmin" method="post" id="form">
-                <h3 class="w3-center">Admin</h3>
-                <div class="w3-section">
-                    <label for="email">E-mail:</label>
-                    <input type="email" name="email" id="email" class="w3-input">
-                </div>
+                <%} else {%>
+                <form action="/authAdmin" method="post" id="form">
+                    <h3 class="w3-center">Admin</h3>
+                    <div class="w3-section">
+                        <label for="email">E-mail:</label>
+                        <input
+                            type="email"
+                            name="email"
+                            id="email"
+                            class="w3-input"
+                        >
+                    </div>
 
-                <div class="w3-section">
-                    <label for="password">Senha:</label>
-                    <input type="password" name="password" id="password" class="w3-input">
-                </div>
+                    <div class="w3-section">
+                        <label for="password">Senha:</label>
+                        <input
+                            type="password"
+                            name="password"
+                            id="password"
+                            class="w3-input"
+                        >
+                    </div>
 
-                <div class="w3-section">
-                    <button type="submit" class="w3-button w3-pink">Entrar</button>
-                    <% if (typeof errorMessage !=='undefined' ) {%>
+                    <div class="w3-section">
+                        <button type="submit" class="w3-button w3-pink">
+                            Entrar
+                        </button>
+                        <% if (typeof errorMessage !=='undefined' ) {%>
                         <span class="w3-margin-left w3-text-red">
                             <%= errorMessage %>
                         </span>
                         <% }%>
-                </div>
-            </form>
-        </div>
-    </main>
-</body>
-
+                    </div>
+                </form>
+                <%}%>
+            </div>
+        </main>
+    </body>
 </html>

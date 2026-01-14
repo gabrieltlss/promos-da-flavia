@@ -3,6 +3,16 @@ const { getAdmin, createAdmin, validatePassword } = require(
 );
 const { validateInputs } = require("../services/validationServices");
 
+// === Renderização ===
+function loginPage(req, res) {
+  res.render("login");
+}
+
+function adminPage(req, res) {
+  res.render("admin");
+}
+
+// === Lógica ===
 async function authAdmin(req, res) {
   const email = req.body.email;
   const password = req.body.password;
@@ -21,9 +31,8 @@ async function authAdmin(req, res) {
       return;
     }
   } catch (error) {
-    // Devo mudar no futuro - Não mostrar mensagem de erro do BD.
     console.log(error.message);
-    res.render("login", "Erro interno.");
+    res.render("login", { loadingError: "Erro ao obter dados do usuário." });
   }
 
   const validPassword = validatePassword(password, user.res.password);
@@ -43,7 +52,7 @@ async function createNewAdmin(req, res) {
 
   const validInputs = validateInputs(email, password);
   if (validInputs.valid === false) {
-    res.render("login", { errorMessage: validInputs.error });
+    res.json(validInputs.error);
     return;
   }
 
@@ -74,4 +83,10 @@ function adminLogout(req, res) {
   res.redirect("/login");
 }
 
-module.exports = { authAdmin, createNewAdmin, adminLogout };
+module.exports = {
+  loginPage,
+  adminPage,
+  authAdmin,
+  createNewAdmin,
+  adminLogout,
+};
