@@ -28,18 +28,24 @@
             <%- include("./partials/aside.ejs") %>
 
             <section class="w3-grid" id="dashboard">
+                <%if(typeof loadingError !== "undefined"){%>
+                <h2><%= loadingError %></h2>
+
+                <%} else{%>
+
                 <div
                     class="w3-container w3-card w3-center w3-round-medium w3-border-pink w3-topbar card"
                 >
                     <h2>Total de produtos</h2>
-                    <% if (typeof totalProducts==="undefined" ) {%>
+                    <% if (typeof products==="undefined" ) {%>
                     <h1>0</h1>
                     <%} else {%>
                     <h1>
-                        <%= totalProducts %>
+                        <%= products %>
                     </h1>
                     <%}%>
                 </div>
+
                 <div
                     class="w3-container w3-card w3-center w3-round-medium w3-border-pink w3-topbar card"
                 >
@@ -52,6 +58,7 @@
                     </h1>
                     <%}%>
                 </div>
+
                 <div
                     class="w3-container w3-card w3-center w3-round-medium w3-border-pink w3-topbar card"
                 >
@@ -64,6 +71,7 @@
                     </h1>
                     <%}%>
                 </div>
+                <%}%>
             </section>
         </main>
 

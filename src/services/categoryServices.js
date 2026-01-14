@@ -1,14 +1,30 @@
-const { getAllCategoriesDb, getSingleCategoryDb, createCategoryDb, updateCategoryDb, deleteCategoryDb } = require("../repository/categoryRepository");
+const {
+    getAllCategoriesDb,
+    getSingleCategoryDb,
+    createCategoryDb,
+    updateCategoryDb,
+    deleteCategoryDb,
+} = require("../repository/categoryRepository");
 
 async function getAllCategories() {
     const [rows] = await getAllCategoriesDb();
-    if (rows.length === 0) return { valid: false, error: "Não há categorias cadastradas." };
+    if (rows.length === 0) {
+        return { valid: false, error: "Não há categorias cadastradas." };
+    }
     return { valid: true, res: rows };
+}
+
+async function getCategoriesLength() {
+    const [rows] = await getAllCategoriesDb();
+    if (rows.length === 0) return 0;
+    return rows.length;
 }
 
 async function getSingleCategory(categoryId) {
     const [rows] = await getSingleCategoryDb(categoryId);
-    if (rows.length === 0) return { valid: false, error: "A categoria informada não existe." };
+    if (rows.length === 0) {
+        return { valid: false, error: "A categoria informada não existe." };
+    }
     return { valid: true, res: rows[0] };
 }
 
@@ -21,14 +37,25 @@ async function createCategory(name) {
 async function updateCategory(categoryId, categoryName) {
     const [rows] = await updateCategoryDb(categoryId, categoryName);
     // Estou incerto quando a 'affectedRows' abaixo.
-    if (!rows.affectedRows) return { valid: false, error: "Categoria não atualizada." };
+    if (!rows.affectedRows) {
+        return { valid: false, error: "Categoria não atualizada." };
+    }
     return { valid: true };
 }
 
 async function deleteCategory(categoryId) {
     const [rows] = await deleteCategoryDb(categoryId);
-    if (!rows.affectedRows) return { valid: false, error: "Categoria não excluída." };
+    if (!rows.affectedRows) {
+        return { valid: false, error: "Categoria não excluída." };
+    }
     return { valid: true };
 }
 
-module.exports = { getAllCategories, getSingleCategory, createCategory, updateCategory, deleteCategory };
+module.exports = {
+    getAllCategories,
+    getCategoriesLength,
+    getSingleCategory,
+    createCategory,
+    updateCategory,
+    deleteCategory,
+};

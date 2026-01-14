@@ -1,6 +1,12 @@
 const { getAdmin, createAdmin, validatePassword } = require(
   "../services/adminServices",
 );
+const { getCategoriesLength } = require(
+  "../services/categoryServices",
+);
+const { getAllProducts, getRecentProducts } = require(
+  "../services/productServices",
+);
 const { validateInputs } = require("../services/validationServices");
 
 // === Renderização ===
@@ -8,8 +14,26 @@ function loginPage(req, res) {
   res.render("login");
 }
 
-function adminPage(req, res) {
-  res.render("admin");
+async function adminPage(req, res) {
+  try {
+    let productsQuantity = 0;
+    let recentProducts = 0;
+    const getProducts = await getAllProducts();
+    if (getProducts.valid === true) {
+      productsQuantity = getProducts.res.length;
+      recentProducts = getRecentProducts(getProducts.res);
+    }
+    const categoryQuantity = await getCategoriesLength();
+
+    res.render("admin", {
+      products: productsQuantity,
+      recentProducts: recentProducts,
+      categories: categoryQuantity,
+    });
+  } catch (error) {
+    console.log(error.message);
+    res.render("admin", { loadingError: "Erro ao carregar página e dados." });
+  }
 }
 
 // === Lógica ===
