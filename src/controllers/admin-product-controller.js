@@ -9,6 +9,7 @@ const {
 } = require("../services/productServices");
 const { getAllCategories } = require("../services/categoryServices");
 const { validateProductFields } = require("../services/validationServices");
+const { processImage } = require("../services/imageServices");
 
 //  === Renderização ===
 async function createProductPage(req, res) {
@@ -99,9 +100,9 @@ async function createNewProduct(req, res) {
     const productName = req.body.name;
     const productPrice = Number(req.body.price);
     const productUrl = req.body.url;
-    const productImg = req.body.filepath;
     const category = req.body.category;
     const productCategory = category === "null" ? null : Number(category);
+    let productImg = null;
 
     const fields = validateProductFields(productName, productPrice);
     if (fields.valid === false) {
@@ -110,6 +111,11 @@ async function createNewProduct(req, res) {
     }
 
     try {
+        if (req.file) {
+            // Tratar erro aqui? Não há imagem...
+            productImg = await processImage(req.file);
+        }
+
         const newProduct = await createProduct(
             productName,
             productPrice,
@@ -117,13 +123,14 @@ async function createNewProduct(req, res) {
             productImg,
             productCategory,
         );
+
         if (newProduct.valid === false) {
             res.render("create-product", { errorMessage: newProduct.error });
             return;
         }
         res.redirect("/admin/product/create");
     } catch (error) {
-        console.log(error.message);
+        console.log(error);
         res.render("create-product", {
             loadingError: "Erro ao renderizar página e seus dados.",
         });
@@ -135,7 +142,7 @@ async function updateProductController(req, res) {
     const productName = req.body["product-name"];
     const productPrice = Number(req.body["product-price"]);
     const productUrl = req.body["product-url"];
-    const productImg = req.body.filepath;
+    let productImg = null;
     const category = req.body["product-category"];
     const productCategory = category === "null" ? null : Number(category);
 
@@ -187,17 +194,35 @@ async function updateProductController(req, res) {
         return;
     }
 
-    const updateObj = {
-        name: productName,
-        price: productPrice,
-        url: productUrl,
-        img: productImg ? productImg : productExists.img,
-        categoryId: productCategory,
-        productId: productId,
-    };
-
     let updatedProduct = null;
     try {
+        if (req.file) {
+            productImg = await processImage(req.file);
+
+            // Excluindo antiga imagem
+            const imgPath = path.join(
+                __dirname,
+                "../",
+                "../",
+                "public",
+                "img",
+                "products",
+                productExists.img,
+            );
+            fs.unlinkSync(imgPath);
+        } else {
+            productImg = productExists.img;
+        }
+
+        const updateObj = {
+            name: productName,
+            price: productPrice,
+            url: productUrl,
+            img: productImg,
+            categoryId: productCategory,
+            productId: productId,
+        };
+
         updatedProduct = await updateProduct(updateObj);
     } catch (error) {
         if (getCategories.valid === false) {
