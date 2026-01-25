@@ -26,15 +26,19 @@ const {
     updateInformedCategory,
 } = require("./controllers/admin-category-controller");
 
-const router = Router();
-
 const { uploadImg } = require("./middlewares/multerMiddleware");
+const { indexPage } = require("./controllers/page-controller");
+
+const router = Router();
 
 // Rota para manter node ativo.
 router.get("/health", (req, res) => {
     console.log(`Health route - ${new Date()}`);
     res.status(200).send("OK");
 });
+
+// Rota da página principal
+router.get("/", indexPage);
 
 // Rotas do administrador
 router.get("/login", loginAuthMiddleware, loginPage);
