@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Promos da Flávia</title>
+
+        <link rel="stylesheet" href="/styles/main/index.css">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css">
+        <link
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+            rel="stylesheet"
+        />
+        <link
+            rel="shortcut icon"
+            href="/img/promos-icon.webp"
+            type="image/x-icon"
+        >
+    </head>
+
+    <body>
+        <header class="w3-grid w3-pink" id="page-header">
+            <a href="/" id="header-logo">
+                <img src="/img/header-logo.webp" alt="">
+            </a>
+            <h2 class="w3-center">Promos da Flávia</h2>
+        </header>
+
+        <main class="w3-content">
+            <section class="w3-margin-top" id="page-introduction">
+                <section class="w3-container intro-img-container">
+                    <img
+                        src="/img/hero-image.webp"
+                        alt="Imagem de Introdução"
+                        class="w3-round-xlarge"
+                        id="intro-img"
+                    >
+                </section>
+
+                <section class="w3-container intro-content-container">
+                    <header>
+                        <h2 class="w3-center">Introdução</h2>
+                    </header>
+                    <p class="w3-justify">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Laudantium tempora maiores dicta sunt ex maxime dolorem.
+                        Repellendus asperiores necessitatibus architecto
+                        deserunt omnis ex distinctio at recusandae deleniti,
+                        culpa rerum aspernatur?
+                    </p>
+
+                    <p>Dê uma olhada em nossas ofertas.</p>
+                </section>
+            </section>
+
+            <section id="tabs-container">
+                <nav class="w3-row">
+                    <div
+                        class="w3-third w3-button w3-pink w3-padding-16 tabs-btn"
+                        onclick="openTab('daily-highlights')"
+                    >
+                        <span class="material-symbols-outlined"
+                        >star_shine</span>
+                        <span>Ofertas do dia</span>
+                    </div>
+                    <div
+                        class="w3-third w3-button w3-pink w3-padding-16 tabs-btn"
+                        onclick="openTab('categories')"
+                    >
+                        <span class="material-symbols-outlined">stacks</span>
+                        <span>Categorias</span>
+                    </div>
+                    <div
+                        class="w3-third w3-button w3-pink w3-padding-16 tabs-btn"
+                        onclick="openTab('contact-me')"
+                    >
+                        <span class="material-symbols-outlined">mail</span>
+                        <span>Contato</span>
+                    </div>
+                </nav>
+
+                <section
+                    class="tab w3-padding w3-animate-opacity"
+                    id="daily-highlights"
+                >
+                    <section class="w3-center tab-img-container">
+                        <img
+                            src="/img/index/daily-highlights.webp"
+                            alt="Caixa de promoção"
+                            class="tab-img w3-round-large"
+                        >
+                    </section>
+
+                    <article>
+                        <header>
+                            <h3 class="tab-article-title">
+                                <span class="material-symbols-outlined">
+                                    diamond_shine
+                                </span>
+                                Ofertas do dia!
+                            </h3>
+                        </header>
+                        <%if(typeof dailyOffer !== "undefined"){%>
+                        <p>Daily offers...</p>
+                        <%} else {%>
+                        <div class="tab-content">
+                            <p>
+                                As ofertas do dia ainda não foram adicionadas.
+                            </p>
+                        </div>
+                        <%}%>
+                    </article>
+                </section>
+
+                <section
+                    class="tab w3-padding w3-animate-opacity w3-hide"
+                    id="categories"
+                >
+                    <section class="w3-center tab-img-container">
+                        <img
+                            src="/img/index/category-tab.webp"
+                            alt="Caixa de promoção"
+                            class="tab-img w3-round-large"
+                        >
+                    </section>
+
+                    <article>
+                        <header>
+                            <h3 class="tab-article-title">
+                                <span class="material-symbols-outlined">
+                                    diamond_shine
+                                </span>
+                                Explore nossas categorias
+                            </h3>
+                        </header>
+                        <%if(typeof dailyOffer !== "undefined"){%>
+                        <p>Categorias...</p>
+                        <%} else {%>
+                        <div class="tab-content">
+                            <p>
+                                Parece que ainda não criamos nenhuma categoria.
+                            </p>
+                        </div>
+                        <%}%>
+                    </article>
+                </section>
+
+                <section
+                    class="tab w3-padding w3-animate-opacity w3-hide"
+                    id="contact-me"
+                >
+                    <section class="w3-center tab-img-container">
+                        <img
+                            src="/img/index/contact-me-tab.webp"
+                            alt="Caixa de promoção"
+                            class="tab-img w3-round-large"
+                        >
+                    </section>
+
+                    <article>
+                        <header>
+                            <h3 class="tab-article-title">
+                                <span class="material-symbols-outlined">
+                                    mail
+                                </span>
+                                Visite os nossos perfis
+                            </h3>
+                        </header>
+
+                        <section>
+                            <div class="w3-flex" id="contact-links-container">
+                                <a
+                                    href=""
+                                    class="w3-button w3-border w3-border-black w3-round-large contact-link"
+                                >
+                                    <span>
+                                        <img
+                                            src="/img/index/instagram-logo.png"
+                                            alt=""
+                                            height="24px"
+                                            width="24px"
+                                        >
+                                    </span>
+                                    Instagram
+                                </a>
+                                <a
+                                    href=""
+                                    class="w3-button w3-border w3-border-black w3-round-large contact-link"
+                                >
+                                    <span>
+                                        <img
+                                            src="/img/index/facebook-logo.png"
+                                            alt=""
+                                            height="24px"
+                                            width="24px"
+                                        >
+                                    </span>
+                                    Facebook
+                                </a>
+                                <a
+                                    href=""
+                                    class="w3-button w3-border w3-border-black w3-round-large contact-link"
+                                >
+                                    <span>
+                                        <img
+                                            src="/img/index/package.png"
+                                            alt=""
+                                            height="24px"
+                                            width="24px"
+                                        >
+                                    </span>
+                                    Shopee
+                                </a>
+                            </div>
+                        </section>
+                    </article>
+                </section>
+            </section>
+        </main>
+
+        <script src="/js/main/index.js"></script>
+    </body>
+</html>
