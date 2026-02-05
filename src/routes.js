@@ -27,7 +27,7 @@ const {
 } = require("./controllers/admin-category-controller");
 
 const { uploadImg } = require("./middlewares/multerMiddleware");
-const { indexPage } = require("./controllers/page-controller");
+const { indexPage } = require("./controllers/index-controller");
 
 const router = Router();
 

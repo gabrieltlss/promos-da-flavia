@@ -1,127 +1,93 @@
 <!DOCTYPE html>
 <html lang="pt">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Promos da Flávia</title>
 
-        <link rel="stylesheet" href="/styles/partials/header.css">
-        <link rel="stylesheet" href="/styles/product/create-product.css">
-        <link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css">
-        <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&icon_names=menu&display=block
-"
-        >
-        <link
-            rel="shortcut icon"
-            href="/img/promos-icon.webp"
-            type="image/x-icon"
-        >
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promos da Flávia</title>
 
-    <body>
-        <%- include("./partials/sidebar.ejs") %> <%-
-        include("./partials/header.ejs") %>
+    <link rel="stylesheet" href="/styles/partials/header.css">
+    <link rel="stylesheet" href="/styles/product/create-product.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&icon_names=menu&display=block
+">
+    <link rel="shortcut icon" href="/img/promos-icon.webp" type="image/x-icon">
+</head>
 
-        <main class="w3-grid w3-padding">
-            <%- include("./partials/aside.ejs") %>
+<body>
+    <%- include("./partials/sidebar.ejs") %> <%- include("./partials/header.ejs") %>
 
-            <section id="creation-section">
-                <h2 class="w3-center">Criar produto</h2>
+            <main class="w3-grid w3-padding">
+                <%- include("./partials/aside.ejs") %>
 
-                <%if(typeof loadingError !=="undefined" ) {%>
-                <h2 class="w3-center">
-                    <%= loadingError%>
-                </h2>
-                <%}else {%>
-                <div class="create-product-container">
-                    <div class="w3-border" id="image-container">
-                        <img src="" alt="Capa do produto" id="product-image">
-                    </div>
+                    <section id="creation-section">
+                        <h2 class="w3-center">Criar produto</h2>
 
-                    <form
-                        action="/admin/product/create/new"
-                        method="post"
-                        enctype="multipart/form-data"
-                        id="create-form"
-                    >
-                        <div class="w3-section">
-                            <label for="name">Nome do produto:</label>
-                            <input
-                                type="text"
-                                name="name"
-                                id="name"
-                                class="w3-input"
-                                required
-                            >
-                        </div>
+                        <%if(typeof loadingError !=="undefined" ) {%>
+                            <h2 class="w3-center">
+                                <%= loadingError%>
+                            </h2>
+                            <%}else {%>
+                                <div class="create-product-container">
+                                    <div class="w3-border" id="image-container">
+                                        <img src="" alt="Capa do produto" id="product-image">
+                                    </div>
 
-                        <div class="w3-section">
-                            <label for="price">Preço:</label>
-                            <input
-                                type="number"
-                                name="price"
-                                id="price"
-                                class="w3-input"
-                                min="0"
-                                max="100000.0"
-                                required
-                            >
-                        </div>
+                                    <form action="/admin/product/create/new" method="post" enctype="multipart/form-data"
+                                        id="create-form">
+                                        <div class="w3-section">
+                                            <label for="name">Nome do produto:</label>
+                                            <input type="text" name="name" id="name" class="w3-input" required>
+                                        </div>
 
-                        <div class="w3-section">
-                            <label for="url">Link:</label>
-                            <input
-                                type="url"
-                                name="url"
-                                id="url"
-                                class="w3-input"
-                                required
-                            >
-                        </div>
+                                        <div class="w3-section">
+                                            <label for="price">Preço:</label>
+                                            <input type="number" name="price" id="price" class="w3-input" min="0.00"
+                                                step="0.01" max="100000.00" required>
+                                        </div>
 
-                        <div class="w3-section">
-                            <label for="category">Categoria:</label>
-                            <select name="category" id="category" required>
-                                <option value="null">Sem categoria</option>
-                                <%if(typeof categoriesExists !=="undefined" )
-                                {%> <% for(let i=0; i < categories.length; i++)
-                                {%>
-                                <option value="<%=categories[i].id%>">
-                                    <%=categories[i].name%>
-                                </option>
-                                <%}%> <%}%>
-                            </select>
-                        </div>
+                                        <div class="w3-section">
+                                            <label for="url">Link:</label>
+                                            <input type="url" name="url" id="url" class="w3-input" required>
+                                        </div>
 
-                        <div class="w3-section">
-                            <label for="image-input">Imagem:</label><br>
-                            <input
-                                type="file"
-                                name="image-input"
-                                accept="image/*"
-                                id="image-input"
-                                required
-                            >
-                        </div>
+                                        <div class="w3-section">
+                                            <label for="category">Categoria:</label>
+                                            <select name="category" id="category" required>
+                                                <option value="null">Sem categoria</option>
+                                                <%if(typeof categoriesExists !=="undefined" ) {%>
+                                                    <% for(let i=0; i < categories.length; i++) {%>
+                                                        <option value="<%=categories[i].id%>">
+                                                            <%=categories[i].name%>
+                                                        </option>
+                                                        <%}%>
+                                                            <%}%>
+                                            </select>
+                                        </div>
 
-                        <div class="w3-section">
-                            <button type="submit" class="w3-button w3-pink">
-                                Criar
-                            </button>
-                            <%if (!typeof errorMessage==="undefined" ) {%>
-                            <span class="w3-margin-left w3-text-red w3-small">
-                                <%= errorMessage%>
-                            </span>
-                            <%}%>
-                        </div>
-                    </form>
-                </div>
-                <%}%>
-            </section>
-        </main>
-        <script src="/js/header.js"></script>
-        <script src="/js/product/loadImg.js"></script>
-    </body>
+                                        <div class="w3-section">
+                                            <label for="image-input">Imagem:</label><br>
+                                            <input type="file" name="image-input" accept="image/*" id="image-input"
+                                                required>
+                                        </div>
+
+                                        <div class="w3-section">
+                                            <button type="submit" class="w3-button w3-pink">
+                                                Criar
+                                            </button>
+                                            <%if (!typeof errorMessage==="undefined" ) {%>
+                                                <span class="w3-margin-left w3-text-red w3-small">
+                                                    <%= errorMessage%>
+                                                </span>
+                                                <%}%>
+                                        </div>
+                                    </form>
+                                </div>
+                                <%}%>
+                    </section>
+            </main>
+            <script src="/js/header.js"></script>
+            <script src="/js/product/loadImg.js"></script>
+</body>
+
 </html>

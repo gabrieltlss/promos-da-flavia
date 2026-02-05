@@ -24,7 +24,7 @@ async function processImage(file) {
 
     const image = sharp(file.path);
     await image.resize({
-        width: 250,
+        width: 300,
         height: 300,
         fit: "inside",
         withoutEnlargement: true,
