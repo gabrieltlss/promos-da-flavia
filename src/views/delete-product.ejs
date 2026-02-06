@@ -1,113 +1,95 @@
 <!DOCTYPE html>
 <html lang="pt">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Promos da Flávia</title>
 
-        <link rel="stylesheet" href="/styles/partials/header.css">
-        <link rel="stylesheet" href="/styles/product/delete-product.css">
-        <link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css">
-        <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&icon_names=menu&display=block
-"
-        >
-        <link
-            rel="shortcut icon"
-            href="/img/promos-icon.webp"
-            type="image/x-icon"
-        >
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promos da Flávia</title>
 
-    <body>
-        <%- include("./partials/sidebar.ejs") %> <%-
-        include("./partials/header.ejs") %>
+    <link rel="stylesheet" href="/styles/partials/header.css">
+    <link rel="stylesheet" href="/styles/product/delete-product.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&icon_names=menu&display=block
+">
+    <link rel="shortcut icon" href="/img/promos-icon.webp" type="image/x-icon">
+</head>
 
-        <main class="w3-grid w3-padding">
-            <%- include("./partials/aside.ejs") %>
+<body>
+    <%- include("./partials/sidebar.ejs") %> <%- include("./partials/header.ejs") %>
 
-            <section id="update-section">
-                <h2 class="w3-center">Excluir produto</h2>
+            <main class="w3-grid w3-padding">
+                <%- include("./partials/aside.ejs") %>
 
-                <%if(typeof loadingError !=="undefined" ) {%>
-                <h2 class="w3-center">
-                    <%= loadingError %>
-                </h2>
-                <%} else{%> <% if(typeof productsExists==="undefined" ) {%>
-                <h3 class="w3-center">
-                    <%= message%>
-                </h3>
+                    <section id="update-section">
+                        <h2 class="w3-center">Excluir produto</h2>
 
-                <%} else {%>
-                <div class="delete-product-container">
-                    <form
-                        action="/admin/product/delete/post"
-                        method="post"
-                        id="delete-form"
-                    >
-                        <div class="w3-section">
-                            <label for="product-id">ID:</label>
-                            <input
-                                type="number"
-                                name="product-id"
-                                id="product-id"
-                                class="w3-input"
-                                min="0"
-                                max="10000"
-                                required
-                            >
-                        </div>
+                        <%if(typeof loadingError !=="undefined" ) {%>
+                            <h2 class="w3-center">
+                                <%= loadingError %>
+                            </h2>
+                            <%} else{%>
+                                <% if(typeof productsExists==="undefined" ) {%>
+                                    <h3 class="w3-center">
+                                        <%= message%>
+                                    </h3>
 
-                        <div class="w3-section">
-                            <button type="submit" class="w3-button w3-pink">
-                                Excluir
-                            </button>
+                                    <%} else {%>
+                                        <div class="delete-product-container">
+                                            <form action="/admin/product/delete/post" method="post" id="delete-form">
+                                                <div class="w3-section">
+                                                    <label for="product-id">ID:</label>
+                                                    <input type="number" name="product-id" id="product-id"
+                                                        class="w3-input" min="0" max="10000" required>
+                                                </div>
 
-                            <%if (typeof errorMessage!=="undefined" ) {%>
-                            <span class="w3-margin-left w3-text-red w3-small">
-                                <%= errorMessage%>
-                            </span>
-                            <%}%>
-                        </div>
-                    </form>
-                </div>
+                                                <div class="w3-section">
+                                                    <button type="submit" class="w3-button w3-pink">
+                                                        Excluir
+                                                    </button>
 
-                <div class="products-container">
-                    <table class="w3-table w3-bordered w3-border w3-centered">
-                        <thead>
-                            <tr class="w3-pink">
-                                <td>ID</td>
-                                <td>Nome</td>
-                                <td>Imagem</td>
-                            </tr>
-                        </thead>
+                                                    <%if (typeof errorMessage!=="undefined" ) {%>
+                                                        <span class="w3-margin-left w3-text-red w3-small">
+                                                            <%= errorMessage%>
+                                                        </span>
+                                                        <%}%>
+                                                </div>
+                                            </form>
+                                        </div>
 
-                        <tbody>
-                            <%for (let i=0; i < products.length; i++) {%>
-                            <tr>
-                                <td>
-                                    <%= products[i].id%>
-                                </td>
-                                <td>
-                                    <%= products[i].name%>
-                                </td>
+                                        <div class="products-container">
+                                            <table class="w3-table w3-bordered w3-border w3-centered">
+                                                <thead>
+                                                    <tr class="w3-pink">
+                                                        <td>ID</td>
+                                                        <td>Nome</td>
+                                                        <td>Imagem</td>
+                                                    </tr>
+                                                </thead>
 
-                                <td>
-                                    <img
-                                        src="/img/products/<%= products[i].img%>"
-                                        alt=""
-                                        class="table-img"
-                                    >
-                                </td>
-                            </tr>
-                            <%}%>
-                        </tbody>
-                    </table>
-                </div>
-                <%}%> <%}%>
-            </section>
-        </main>
-        <script src="/js/header.js"></script>
-    </body>
+                                                <tbody>
+                                                    <%for (let i=0; i < products.length; i++) {%>
+                                                        <tr>
+                                                            <td>
+                                                                <%= products[i].id%>
+                                                            </td>
+                                                            <td>
+                                                                <%= products[i].name%>
+                                                            </td>
+
+                                                            <td>
+                                                                <img src="/img/products/<%= products[i].img%>" alt=""
+                                                                    class="table-img">
+                                                            </td>
+                                                        </tr>
+                                                        <%}%>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <%}%>
+                                            <%}%>
+                    </section>
+            </main>
+            <script src="/js/header.js"></script>
+</body>
+
 </html>

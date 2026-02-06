@@ -1,80 +1,73 @@
 <!DOCTYPE html>
 <html lang="pt">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Promos da Flávia</title>
 
-        <link rel="stylesheet" href="/styles/partials/header.css">
-        <link rel="stylesheet" href="/styles/admin.css">
-        <link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css">
-        <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&icon_names=menu&display=block
-"
-        >
-        <link
-            rel="shortcut icon"
-            href="/img/promos-icon.webp"
-            type="image/x-icon"
-        >
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promos da Flávia</title>
 
-    <body>
-        <%- include("./partials/sidebar.ejs") %> <%-
-        include("./partials/header.ejs") %>
+    <link rel="stylesheet" href="/styles/partials/header.css">
+    <link rel="stylesheet" href="/styles/admin.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&icon_names=menu&display=block
+">
+    <link rel="shortcut icon" href="/img/promos-icon.webp" type="image/x-icon">
+</head>
 
-        <main class="w3-grid w3-padding">
-            <%- include("./partials/aside.ejs") %>
+<body>
+    <%- include("./partials/sidebar.ejs") %> <%- include("./partials/header.ejs") %>
 
-            <section class="w3-grid" id="dashboard">
-                <%if(typeof loadingError !== "undefined"){%>
-                <h2 class="w3-center"><%= loadingError %></h2>
+            <main class="w3-grid w3-padding">
+                <%- include("./partials/aside.ejs") %>
 
-                <%} else{%>
+                    <section class="w3-grid" id="dashboard">
+                        <%if(typeof loadingError !=="undefined" ){%>
+                            <h2 class="w3-center">
+                                <%= loadingError %>
+                            </h2>
 
-                <div
-                    class="w3-container w3-card w3-center w3-round-medium w3-border-pink w3-topbar card"
-                >
-                    <h2>Total de produtos</h2>
-                    <% if (typeof products==="undefined" ) {%>
-                    <h1>0</h1>
-                    <%} else {%>
-                    <h1>
-                        <%= products %>
-                    </h1>
-                    <%}%>
-                </div>
+                            <%} else{%>
 
-                <div
-                    class="w3-container w3-card w3-center w3-round-medium w3-border-pink w3-topbar card"
-                >
-                    <h2>Categorias</h2>
-                    <% if (typeof categories==="undefined" ) {%>
-                    <h1>0</h1>
-                    <%} else {%>
-                    <h1>
-                        <%= categories %>
-                    </h1>
-                    <%}%>
-                </div>
+                                <div
+                                    class="w3-container w3-card w3-center w3-round-medium w3-border-pink w3-topbar card">
+                                    <h2>Total de produtos</h2>
+                                    <% if (typeof products==="undefined" ) {%>
+                                        <h1>0</h1>
+                                        <%} else {%>
+                                            <h1>
+                                                <%= products %>
+                                            </h1>
+                                            <%}%>
+                                </div>
 
-                <div
-                    class="w3-container w3-card w3-center w3-round-medium w3-border-pink w3-topbar card"
-                >
-                    <h2>Itens recentes</h2>
-                    <% if (typeof recentProducts==="undefined" ) {%>
-                    <h1>0</h1>
-                    <%} else {%>
-                    <h1>
-                        <%= recentProducts %>
-                    </h1>
-                    <%}%>
-                </div>
-                <%}%>
-            </section>
-        </main>
+                                <div
+                                    class="w3-container w3-card w3-center w3-round-medium w3-border-pink w3-topbar card">
+                                    <h2>Categorias</h2>
+                                    <% if (typeof categories==="undefined" ) {%>
+                                        <h1>0</h1>
+                                        <%} else {%>
+                                            <h1>
+                                                <%= categories %>
+                                            </h1>
+                                            <%}%>
+                                </div>
 
-        <script src="/js/header.js"></script>
-    </body>
+                                <div
+                                    class="w3-container w3-card w3-center w3-round-medium w3-border-pink w3-topbar card">
+                                    <h2>Itens recentes</h2>
+                                    <% if (typeof recentProducts==="undefined" ) {%>
+                                        <h1>0</h1>
+                                        <%} else {%>
+                                            <h1>
+                                                <%= recentProducts %>
+                                            </h1>
+                                            <%}%>
+                                </div>
+                                <%}%>
+                    </section>
+            </main>
+
+            <script src="/js/header.js"></script>
+</body>
+
 </html>

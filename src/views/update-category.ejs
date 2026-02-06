@@ -1,119 +1,100 @@
 <!DOCTYPE html>
 <html lang="pt">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Promos da Flávia</title>
 
-        <link rel="stylesheet" href="/styles/partials/header.css">
-        <link rel="stylesheet" href="/styles/category/main-category.css" />
-        <link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css">
-        <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&icon_names=menu&display=block
-"
-        >
-        <link
-            rel="shortcut icon"
-            href="/img/promos-icon.webp"
-            type="image/x-icon"
-        >
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promos da Flávia</title>
 
-    <body>
-        <%- include("./partials/sidebar.ejs") %> <%-
-        include("./partials/header.ejs") %>
+    <link rel="stylesheet" href="/styles/partials/header.css">
+    <link rel="stylesheet" href="/styles/category/main-category.css" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&icon_names=menu&display=block
+">
+    <link rel="shortcut icon" href="/img/promos-icon.webp" type="image/x-icon">
+</head>
 
-        <main class="w3-grid w3-padding">
-            <%- include("./partials/aside.ejs") %>
+<body>
+    <%- include("./partials/sidebar.ejs") %> <%- include("./partials/header.ejs") %>
 
-            <section class="creation-section">
-                <%if (typeof loadingError !=="undefined" ) {%>
-                <h2 class="w3-center">
-                    <%= loadingError %>
-                </h2>
-                <%} else {%> <%if (typeof categoryExist==="undefined" ) {%>
-                <h2 class="w3-center">Atualizar categorias</h2>
-                <h3 class="w3-center">
-                    <%=message%>
-                </h3>
+            <main class="w3-grid w3-padding">
+                <%- include("./partials/aside.ejs") %>
 
-                <%} else {%>
-                <div class="main-category-container">
-                    <h3>Atualizar Categoria</h3>
-                    <form
-                        action="/admin/category/update/post"
-                        method="post"
-                        id="update-category-form"
-                    >
-                        <div class="w3-section">
-                            <label for="category-id">ID da categoria:</label>
-                            <input
-                                type="number"
-                                name="category-id"
-                                id="category-id"
-                                class="w3-input"
-                                min="0"
-                                max="10000"
-                                required
-                            >
-                        </div>
+                    <section class="creation-section">
+                        <%if (typeof loadingError !=="undefined" ) {%>
+                            <h2 class="w3-center">
+                                <%= loadingError %>
+                            </h2>
+                            <%} else {%>
+                                <%if (typeof categoryExist==="undefined" ) {%>
+                                    <h2 class="w3-center">Atualizar categorias</h2>
+                                    <h3 class="w3-center">
+                                        <%=message%>
+                                    </h3>
 
-                        <div class="w3-section">
-                            <label for="category-name">Novo nome:</label>
-                            <input
-                                type="text"
-                                name="category-name"
-                                id="category-name"
-                                class="w3-input"
-                                required
-                            >
-                        </div>
+                                    <%} else {%>
+                                        <div class="main-category-container">
+                                            <h3>Atualizar Categoria</h3>
+                                            <form action="/admin/category/update/post" method="post"
+                                                id="update-category-form">
+                                                <div class="w3-section">
+                                                    <label for="category-id">ID da categoria:</label>
+                                                    <input type="number" name="category-id" id="category-id"
+                                                        class="w3-input" min="0" max="10000" required>
+                                                </div>
 
-                        <div class="w3-section">
-                            <button type="submit" class="w3-button w3-pink">
-                                Atualizar
-                            </button>
+                                                <div class="w3-section">
+                                                    <label for="category-name">Novo nome:</label>
+                                                    <input type="text" name="category-name" id="category-name"
+                                                        class="w3-input" required>
+                                                </div>
 
-                            <%if(typeof updateError !=="undefined" ){%>
-                            <span class="w3-margin-left w3-small w3-text-red">
-                                <%= updateError%>
-                            </span>
-                            <%}else if (typeof errorMessage!=="undefined" ){%>
-                            <span class="w3-margin-left w3-small w3-text-red">
-                                <%= errorMessage%>
-                            </span>
-                            <%}%>
-                        </div>
-                    </form>
-                </div>
+                                                <div class="w3-section">
+                                                    <button type="submit" class="w3-button w3-pink">
+                                                        Atualizar
+                                                    </button>
 
-                <div class="list-category-container">
-                    <table class="w3-table w3-bordered w3-border">
-                        <thead>
-                            <tr class="w3-pink">
-                                <td>ID</td>
-                                <td>Nome da categoria</td>
-                            </tr>
-                        </thead>
+                                                    <%if(typeof updateError !=="undefined" ){%>
+                                                        <span class="w3-margin-left w3-small w3-text-red">
+                                                            <%= updateError%>
+                                                        </span>
+                                                        <%}else if (typeof errorMessage!=="undefined" ){%>
+                                                            <span class="w3-margin-left w3-small w3-text-red">
+                                                                <%= errorMessage%>
+                                                            </span>
+                                                            <%}%>
+                                                </div>
+                                            </form>
+                                        </div>
 
-                        <tbody>
-                            <%for(let i=0; i < categories.length; i++) {%>
-                            <tr>
-                                <td>
-                                    <%= categories[i].id%>
-                                </td>
-                                <td>
-                                    <%= categories[i].name%>
-                                </td>
-                            </tr>
-                            <%}%>
-                        </tbody>
-                    </table>
-                </div>
-                <%}%> <%}%>
-            </section>
-        </main>
-        <script src="/js/header.js"></script>
-    </body>
+                                        <div class="list-category-container">
+                                            <table class="w3-table w3-bordered w3-border">
+                                                <thead>
+                                                    <tr class="w3-pink">
+                                                        <td>ID</td>
+                                                        <td>Nome da categoria</td>
+                                                    </tr>
+                                                </thead>
+
+                                                <tbody>
+                                                    <%for(let i=0; i < categories.length; i++) {%>
+                                                        <tr>
+                                                            <td>
+                                                                <%= categories[i].id%>
+                                                            </td>
+                                                            <td>
+                                                                <%= categories[i].name%>
+                                                            </td>
+                                                        </tr>
+                                                        <%}%>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <%}%>
+                                            <%}%>
+                    </section>
+            </main>
+            <script src="/js/header.js"></script>
+</body>
+
 </html>
