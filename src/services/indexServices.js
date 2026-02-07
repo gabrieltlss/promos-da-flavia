@@ -1,4 +1,4 @@
-const { getIndexProducts, getIndexCategories } = require(
+const { getIndexProducts, getIndexCategories, getCategoryProducts } = require(
     "../repository/index-repository",
 );
 
@@ -18,4 +18,12 @@ async function indexCategories() {
     return { valid: true, res: rows };
 }
 
-module.exports = { indexProducts, indexCategories };
+async function categoryProducts() {
+    const [rows] = await getCategoryProducts();
+    if (rows.length === 0) {
+        return { valid: false, error: "Não há produtos cadastrados." };
+    }
+    return { valid: true, res: rows };
+}
+
+module.exports = { indexProducts, indexCategories, categoryProducts };

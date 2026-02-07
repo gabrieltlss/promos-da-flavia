@@ -1,13 +1,9 @@
-const { indexProducts, indexCategories } = require("../services/indexServices");
+const { indexProducts, indexCategories, categoryProducts } = require("../services/indexServices");
 
-// === Renderização ===
 async function indexPage(req, res) {
-    let getProdcuts = null;
-    let getCategories = null;
-
     try {
-        getProdcuts = await indexProducts();
-        getCategories = await indexCategories();
+        const getProdcuts = await indexProducts();
+        const getCategories = await indexCategories();
 
         if (getProdcuts.valid === false && getCategories.valid === false) {
             res.render("index");
@@ -39,4 +35,19 @@ async function indexPage(req, res) {
     }
 }
 
-module.exports = { indexPage };
+async function categoryPage(req, res) {
+    try {
+        const getCategories = await indexCategories();
+        const getProducts = await categoryProducts();
+        if (getProducts.valid === false || getCategories.valid === false) {
+            res.render("category");
+            return;
+        }
+        res.render("category", { categories: getCategories.res, products: getProducts.res });
+    } catch (error) {
+        console.log("Category page", error.message);
+        res.render("category");
+    }
+}
+
+module.exports = { indexPage, categoryPage };

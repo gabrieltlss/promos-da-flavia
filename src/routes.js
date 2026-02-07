@@ -27,7 +27,7 @@ const {
 } = require("./controllers/admin-category-controller");
 
 const { uploadImg } = require("./middlewares/multerMiddleware");
-const { indexPage } = require("./controllers/index-controller");
+const { indexPage, categoryPage } = require("./controllers/index-controller");
 
 const router = Router();
 
@@ -39,6 +39,7 @@ router.get("/health", (req, res) => {
 
 // Rota da página principal
 router.get("/", indexPage);
+router.get("/category", categoryPage);
 
 // Rotas do administrador
 router.get("/login", loginAuthMiddleware, loginPage);

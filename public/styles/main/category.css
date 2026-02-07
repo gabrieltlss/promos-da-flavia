@@ -1,0 +1,158 @@
+* {
+    scroll-behavior: smooth;
+}
+
+/* Header */
+header#page-header {
+    grid-template-columns: 50px auto;
+    /* height: 70px; */
+}
+
+#header-logo {
+    margin-left: 8px;
+    align-self: center;
+}
+
+#header-logo img {
+    width: 50px;
+    height: 50px;
+}
+
+/* Main */
+main {
+    min-height: 100vh;
+    width: 100%;
+}
+
+/* Introduction */
+#introduction {
+    padding: 16px;
+    display: flex;
+    gap: 16px;
+    flex-direction: column;
+    align-items: center;
+}
+
+.intro-content-container,
+.intro-img-container {
+    max-width: 400px;
+    width: 100%;
+}
+
+.intro-img {
+    width: 100%;
+    height: 100%;
+}
+
+/* Main (categorias) */
+.category-container {
+    margin: 32px 0px;
+}
+
+.category-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.product-container {
+    padding: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+}
+
+.product {
+    max-width: 250px;
+    width: 100%;
+    height: 360px;
+    padding: 16px;
+}
+
+.product-img-container {
+    max-width: 200px;
+    width: 100%;
+    height: 200px;
+    margin: auto;
+}
+
+.product-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.product-content {
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+/* No products section */
+.no-products-section {
+    margin: 32px 0px;
+}
+
+/* Footer */
+#footer {
+    padding: 16px;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+.footer-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+}
+
+.footer-img {
+    width: 35px;
+    height: 35px;
+}
+
+.goodbye-img {
+    max-width: 130px;
+    max-height: 130px;
+    width: 100%;
+    height: 100%;
+}
+
+a.footer-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+
+/* Media Queries */
+@media screen and (min-width: 600px) {
+    #introduction {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .intro-content-container,
+    .intro-img-container {
+        max-width: 450px;
+    }
+
+    #footer {
+        display: flex;
+        gap: 16px;
+    }
+}

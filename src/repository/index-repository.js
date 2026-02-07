@@ -9,4 +9,8 @@ function getIndexCategories() {
     return pool.execute("SELECT * FROM category ORDER BY name LIMIT 3;");
 }
 
-module.exports = { getIndexProducts, getIndexCategories };
+function getCategoryProducts() {
+    return pool.execute("SELECT c.name as 'category', p.name, p.price, p.link, p.img FROM category c JOIN products p ON p.category_id = c.id;");
+}
+
+module.exports = { getIndexProducts, getIndexCategories, getCategoryProducts };

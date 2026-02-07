@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Promos da Flávia</title>
 
-    <link rel="stylesheet" href="/styles/main/index.css">
+    <link rel="stylesheet" href="/styles/main/category.css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
     <link rel="shortcut icon" href="/img/promos-icon.webp" type="image/x-icon">
@@ -14,13 +14,82 @@
 
 <body>
     <header class="w3-grid w3-pink" id="page-header">
-        <a href="/" id="header-logo">
+        <a href="/category" id="header-logo">
             <img src="/img/header-logo.webp" alt="">
         </a>
         <h2 class="w3-center">Promos da Flávia</h2>
     </header>
 
+    <main>
+        <section id="introduction">
+            <div class="intro-img-container">
+                <img src="/img/index/category-intro.webp" alt="" class="intro-img">
+            </div>
 
+            <div class="intro-content-container">
+                <h2 class="w3-center">Bem-vindo à página de categorias e produtos.</h2>
+
+                <p class="w3-justify">
+                    Aqui, <b>os produtos estão separados por categorias</b>, e cada produto possui um link direto para
+                    <b>Shopee</b>,
+                    onde você verá mais detalhes do produto e poderá comprá-lo quando quiser.
+                </p>
+            </div>
+        </section>
+
+        <%if(typeof categories !=="undefined" && typeof products !=="undefined" ){%>
+            <section class="w3-margin-top">
+                <header class="w3-container w3-center w3-pink">
+                    <h2>Categorias</h2>
+                </header>
+
+                <%for(let i=0; i < categories.length; i++) {%>
+                    <section class="category-container" id="<%= categories[i].name %>">
+                        <header class="w3-container category-header">
+                            <span class="material-symbols-outlined">package</span>
+                            <span class="w3-large">
+                                <%= categories[i].name %>
+                            </span>
+                        </header>
+
+                        <div class="product-container">
+                            <%for(let j=0; j < products.length; j++){%>
+                                <%if(products[j].category===categories[i].name){%>
+                                    <div class="product w3-card w3-round-large">
+                                        <div class="product-img-container">
+                                            <img src="/img/products/<%= products[j].img %>"
+                                                alt="<%= products[j].name %>" class="product-img w3-round-large">
+                                        </div>
+
+                                        <div class="product-content">
+                                            <p class="product-title w3-center">
+                                                <%= products[j].name %>
+                                            </p>
+                                            <p class="product-price">
+                                                R$ <%= products[j].price %>
+                                            </p>
+                                        </div>
+
+                                        <div class="w3-center">
+                                            <a href="<%= products[j].link %>"
+                                                class="w3-button w3-pink w3-round-large product-button" target="_blank">
+                                                Ver
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <%}%>
+                                        <%}%>
+                        </div>
+                    </section>
+                    <%}%>
+            </section>
+            <%} else {%>
+                <section class="no-products-section w3-container w3-center">
+                    <h3>Ops... os produtos ainda não foram cadastrados.</h3>
+                    <p>Fique atento para futuras promoções.</p>
+                </section>
+                <%}%>
+    </main>
 
     <footer id="footer" class="w3-container w3-pink w3-margin-top">
         <section class="footer-content">
