@@ -7,9 +7,9 @@ const app = express();
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "src", "views"));
+app.set('view cache', true);
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
 app.set("trust proxy", 1);
 app.use(session({
     secret: process.env.SECRET_SESSION,
