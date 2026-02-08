@@ -7,6 +7,8 @@ A página de categorias organiza os produtos por categorias distintas e permite 
 
 ## Tecnologias e link
 
-EJS, CSS, W3CSS (framework), JavaScript, Mysql2 e express.
+Tecnologias:EJS, CSS, W3CSS (framework), JavaScript, Mysql2 e express.
+
 Hospedagem: ReselHost
+
 Navegue pela página: [*Promos da Flávia*](https://promos.flaviatlss.com.br)
