@@ -15,7 +15,7 @@
 <body>
     <header class="w3-grid w3-pink" id="page-header">
         <a href="/category" id="header-logo">
-            <img src="/img/header-logo.webp" alt="">
+            <img src="/img/header-logo.webp" alt="Logotipo" loading="lazy">
         </a>
         <h2 class="w3-center">Promos da Flávia</h2>
     </header>
@@ -23,7 +23,7 @@
     <main>
         <section id="introduction">
             <div class="intro-img-container">
-                <img src="/img/index/category-intro.webp" alt="" class="intro-img">
+                <img src="/img/index/category-intro.webp" alt="Imagem de introdução" class="intro-img" loading="lazy">
             </div>
 
             <div class="intro-content-container">
@@ -58,8 +58,8 @@
                                     <div class="product w3-card w3-round-large">
                                         <div class="product-img-container">
                                             <img src="/img/products/<%= products[j].img %>"
-                                                alt="<%= products[j].name %>"
-                                                class="product-img w3-card w3-round-large">
+                                                alt="<%= products[j].name %>" class="product-img w3-card w3-round-large"
+                                                loading="lazy">
                                         </div>
 
                                         <div class="product-content">
@@ -95,7 +95,7 @@
     <footer id="footer" class="w3-container w3-pink w3-margin-top">
         <section class="footer-content">
             <div class="footer-header">
-                <img src="/img/header-logo.webp" alt="Logo da página" class="footer-img">
+                <img src="/img/header-logo.webp" alt="Logo da página" class="footer-img" loading="lazy">
                 <p class="w3-large">Promos da Flávia</p>
             </div>
 
@@ -110,7 +110,7 @@
         </section>
 
         <section class="w3-margin-top w3-center w3-hide-small" id="goodbye-img-container">
-            <img src="/img/index/despedida.webp" alt="" class="goodbye-img">
+            <img src="/img/index/despedida.webp" alt="" class="goodbye-img" loading="lazy">
         </section>
     </footer>
 </body>

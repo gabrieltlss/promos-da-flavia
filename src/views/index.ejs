@@ -15,7 +15,7 @@
 <body>
     <header class="w3-grid w3-pink" id="page-header">
         <a href="/" id="header-logo">
-            <img src="/img/header-logo.webp" alt="">
+            <img src="/img/header-logo.webp" alt="Logotipo" loading="lazy">
         </a>
         <h2 class="w3-center">Promos da Flávia</h2>
     </header>
@@ -23,18 +23,20 @@
     <main class="w3-content">
         <section class="w3-margin-top w3-padding-16 w3-card" id="page-introduction">
             <section class="w3-container intro-img-container">
-                <img src="/img/hero-image.webp" alt="Imagem de Introdução" class="w3-round-large" id="intro-img">
+                <img src="/img/hero-image.webp" alt="Imagem de Introdução" class="w3-round-large" id="intro-img"
+                    loading="lazy">
             </section>
 
             <section class="w3-container intro-content-container">
                 <header>
-                    <h2 class="w3-center">Introdução</h2>
+                    <h2 class="w3-center">Bem-vindo!</h2>
                 </header>
 
                 <p class="w3-justify">
                     Bem-vindo à página de promoções <b>Promos da Flávia</b>.
                     <br>
-                    Aqui você encontrará os melhores preços da <b>Shopee</b>, além de poder navegar por
+                    Aqui você encontrará os melhores preços da <b>Shopee</b> e da <b>Magazine Luiza</b>, além de poder
+                    navegar por
                     categorias específicas de produtos.
                     <br>
                 </p>
@@ -56,7 +58,7 @@
                         <div class="daily-product w3-card-2 w3-round-large w3-padding">
                             <div class="daily-product-img-container">
                                 <img src="/img/products/<%= dailyOffers[i].img %>" alt="<%= dailyOffers[i].name %>"
-                                    class="daily-product-img w3-round-large w3-card-2">
+                                    class="daily-product-img w3-round-large w3-card-2" loading="lazy">
                             </div>
 
                             <div class="daily-product-content">
@@ -81,7 +83,7 @@
                     <section class="no-daily-offers">
                         <section class="w3-center section-img-container">
                             <img src="/img/index/daily-highlights.webp" alt="Caixa de promoção"
-                                class="section-img w3-round-large">
+                                class="section-img w3-round-large" loading="lazy">
                         </section>
                         <section>
                             <header>
@@ -109,7 +111,7 @@
             <section id="category-container">
                 <section class="w3-center category-img-container">
                     <img src="/img/index/category-tab.webp" alt="Homem segurando notebook"
-                        class="category-img w3-round-large w3-center">
+                        class="category-img w3-round-large w3-center" loading="lazy">
                 </section>
 
                 <section class="category-content w3-center">
@@ -152,7 +154,8 @@
                                         class="w3-button w3-border w3-border-gray w3-round-large contact-link"
                                         target="_blank">
                                         <span>
-                                            <img src="/img/index/package.png" alt="" height="24" width="24">
+                                            <img src="/img/index/package.png" alt="" height="24" width="24"
+                                                loading="lazy">
                                         </span>
                                         Shopee
                                     </a>
@@ -171,8 +174,8 @@
 
             <section class="contact-content-container">
                 <section class="w3-center section-img-container">
-                    <img src="/img/index/contact-me-tab.webp" alt="Caixa de promoção"
-                        class="section-img w3-round-large">
+                    <img src="/img/index/contact-me-tab.webp" alt="Caixa de promoção" class="section-img w3-round-large"
+                        loading="lazy">
                 </section>
 
                 <section>
@@ -187,7 +190,7 @@
                                 class="w3-button w3-border w3-border-gray w3-round-large contact-link" target="_blank">
                                 <span>
                                     <img src="/img/index/instagram-logo.png" alt="Logotipo do Instagram" height="24"
-                                        width="24">
+                                        width="24" loading="lazy">
                                 </span>
                                 <span>Instagram</span>
                             </a>
@@ -200,7 +203,8 @@
                             <a href="https://collshp.com/promodaflaviana?view=storefront"
                                 class="w3-button w3-border w3-border-gray w3-round-large contact-link" target="_blank">
                                 <span>
-                                    <img src="/img/index/package.png" alt="Caixa de produto" height="24" width="24">
+                                    <img src="/img/index/package.png" alt="Caixa de produto" height="24" width="24"
+                                        loading="lazy">
                                 </span>
                                 <span>Shopee</span>
                             </a>
@@ -214,7 +218,7 @@
     <footer id="footer" class="w3-container w3-pink w3-margin-top">
         <section class="footer-content">
             <div class="footer-header">
-                <img src="/img/header-logo.webp" alt="Logo da página" class="footer-img">
+                <img src="/img/header-logo.webp" alt="Logo da página" class="footer-img" loading="lazy">
                 <p class="w3-large">Promos da Flávia</p>
             </div>
 
@@ -229,7 +233,7 @@
         </section>
 
         <section class="w3-margin-top w3-center w3-hide-small" id="goodbye-img-container">
-            <img src="/img/index/despedida.webp" alt="" class="goodbye-img">
+            <img src="/img/index/despedida.webp" alt="Imagem de rodapé" class="goodbye-img" loading="lazy">
         </section>
     </footer>
 </body>
